@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- All Program-videoNN.cs files are excluded by default so only one
+         top-level-statements file is ever compiled at a time (CS8802). -->
+    <Compile Remove="Program-video*.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Video)' != ''">
+    <!-- Passing -p:Video=NN swaps Program.cs out for Program-videoNN.cs. -->
+    <Compile Remove="Program.cs" />
+    <Compile Include="Program-video$(Video).cs" />
+  </ItemGroup>
+
+</Project>
